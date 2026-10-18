@@ -1,0 +1,112 @@
+:root {
+    --ink: #263a36;
+    --forest: #266855;
+    --paper: #fffdf5;
+    --gold: #ffc96c;
+}
+
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    background: linear-gradient(150deg, #dbf1e7, #fff5d6);
+    font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif;
+}
+button { font: inherit; cursor: pointer; border: none; }
+button:focus-visible { outline: 4px solid #e6a532; outline-offset: 3px; }
+.shell { max-width: 1030px; margin: auto; padding: 20px; }
+.top, .bottom, .status { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.brand { font-size: clamp(20px, 4vw, 30px); font-weight: 900; color: var(--forest); }
+.chip { background: #fff; padding: 10px 16px; border-radius: 24px; font-weight: 800; box-shadow: 0 3px 12px #235a3920; }
+.progress { display: flex; gap: 8px; margin: 20px 0; }
+.step { flex: 1; height: 12px; background: #d5dcd1; border-radius: 12px; }
+.step.done { background: #64b98a; }
+.step.active { background: #f6b844; }
+.panel { background: var(--paper); border: 3px solid #fff; border-radius: 30px; padding: clamp(18px, 4vw, 36px); min-height: 570px; box-shadow: 0 14px 40px #255d4730; overflow: hidden; }
+.intro { display: flex; align-items: center; gap: 35px; min-height: 475px; }
+.character { flex-shrink: 0; filter: drop-shadow(0 9px 10px #314f4330); }
+h1 { color: #23644e; font-size: clamp(28px, 5vw, 46px); margin: 4px 0 12px; }
+h2 { color: #23644e; font-size: clamp(24px, 4vw, 36px); margin: 0 0 10px; }
+p { font-size: 17px; line-height: 1.55; }
+.muted, .tip { color: #62756f; }
+.btn { background: var(--forest); color: white; padding: 13px 24px; border-radius: 16px; font-size: 17px; font-weight: 900; box-shadow: 0 5px 0 #184939; }
+.btn:hover { transform: translateY(-1px); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.secondary { background: #f4ead2; color: #345348; box-shadow: 0 5px 0 #ded0b0; }
+.notice { padding: 13px 18px; background: #e6f3dc; border-radius: 15px; margin-top: 16px; min-height: 50px; font-weight: 800; }
+.status { margin-bottom: 12px; }
+.pill { display: inline-block; padding: 8px 15px; border-radius: 30px; background: #fce5aa; font-weight: 900; }
+.choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 26px 0; }
+.tile { min-height: 118px; background: #f1f8eb; border: 3px solid #cde4be; border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+.tile small { font-size: 15px; font-weight: 800; }
+.tile.selected { border-color: #e6a832; background: #fff0c2; }
+.tile.matched { background: #d0ebdb; border-color: #58ad78; opacity: .7; pointer-events: none; }
+.tile.wrong, .chest.wrong { animation: shake .3s; }
+.game-image { display: inline-block; vertical-align: middle; }
+
+.footprints { margin-top: 24px; }
+.items { display: flex; flex-wrap: wrap; gap: 10px; }
+.item { padding: 8px 12px; background: #e7eee0; border-radius: 14px; font-weight: 800; }
+.item.got { background: #bde7c7; text-decoration: line-through; }
+.scene { position: relative; height: 350px; background: linear-gradient(#b5e6ef 0 42%, #b8db89 42% 100%); border: 5px solid #e5ecc8; border-radius: 23px; overflow: hidden; margin: 20px 0; }
+
+
+.hidden-object { position: absolute; z-index: 2; background: #fff8dcba; border: 2px solid white; border-radius: 15px; padding: 7px; }
+.hidden-object.found { opacity: .28; pointer-events: none; transform: scale(.8); }
+.memory { display: grid; grid-template-columns: repeat(4, minmax(0, 110px)); justify-content: center; gap: 12px; margin: 26px 0; }
+.mem { aspect-ratio: 1; background: #397e66; color: white; border-radius: 18px; font-size: 50px; font-weight: 900; border: 4px solid #68a88b; }
+.mem.flipped, .mem.matched { background: #fff4d5; color: #263a36; }
+.mem.matched { border-color: #6ac58d; opacity: .8; }
+.maze { display: grid; grid-template-columns: repeat(7, minmax(0, 58px)); gap: 4px; width: max-content; max-width: 100%; margin: 20px auto; }
+.cell { width: clamp(33px, 7vw, 58px); aspect-ratio: 1; display: grid; place-items: center; background: #e5d6aa; border-radius: 8px; }
+.cell.wall { background: #50876a; }
+.cell.goal { background: #fada82; }
+.cell.player { background: #b2e4c5; }
+.controls { display: grid; grid-template-columns: repeat(3, 58px); gap: 5px; justify-content: center; margin: 12px; }
+.arrow { background: #fff0cc; border: 2px solid #e2c78e; border-radius: 12px; height: 47px; font-size: 24px; }
+.chests { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 25px 0; }
+.chest { background: #f2f4e9; border: 3px solid #bed9b9; border-radius: 20px; padding: 20px 5px; min-height: 155px; }
+.chest span.label { display: block; font-size: 16px; font-weight: 900; margin-top: 8px; }
+.clues { background: #e8f4e5; border-radius: 20px; padding: 16px 22px; margin: 16px 0; }
+.clues li { margin: 5px 0; font-size: 17px; }
+.win { text-align: center; }
+
+.stars { font-size: 42px; }
+.bottom { margin-top: 18px; }
+.tip { font-size: 14px; }
+.sr-only { position: absolute; left: -9999px; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@media (max-width: 650px) {
+    .intro { flex-direction: column; text-align: center; gap: 4px; }
+    
+    .panel { min-height: 600px; }
+    .choices { gap: 8px; }
+    .tile { min-height: 90px; }
+    .scene { height: 330px; }
+    .chests { gap: 7px; }
+    .chest { padding: 12px 2px; }
+    .chest span.label { font-size: 12px; }
+    .memory { gap: 7px; }
+    .mem { font-size: 34px; }
+    .game-image { display: inline-block; vertical-align: middle; }
+    
+}
+
+/* Sadece görsel dosyaları. Tümünü assets.js üzerinden değiştirebilirsin. */
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-icon { object-fit: contain; }
+.scene { background: #b8db89 var(--scene-background, none) var(--scene-position, center) / var(--scene-size, cover) no-repeat; }
+
+
+
+
+
+
+/* Görsel genişlik/yükseklikleri assets.js'den gelir.
+   Flex yerleşiminde ana görsel ve yazı birlikte sığar. */
+.intro > div { flex: 1; min-width: 0; }
+.intro .game-image { flex-shrink: 1; }
+@media (max-width: 650px) {
+    .intro .game-image { max-width: 100% !important; height: auto !important; }
+}

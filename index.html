@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minik Dedektif | Kayıp Orman Hazinesi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="assets.js" defer></script>
+    <script src="game.js" defer></script>
+</head>
+<body>
+    <main class="shell">
+        <header class="top">
+            <div class="brand"><img id="brandDetective" alt="Tilki dedektif" class="brand-icon"> MİNİK DEDEKTİF</div>
+            <div class="chip" id="score">Puan: 0</div>
+        </header>
+
+        <div class="progress" id="progress" aria-label="Görev ilerlemesi"></div>
+        <section class="panel" id="app"></section>
+
+        <footer class="bottom">
+            <span class="tip">Kayıp Orman Hazinesi • 5 eğlenceli görev</span>
+            <button type="button" class="btn secondary" id="restart">↻ Baştan Başla</button>
+        </footer>
+        <div class="sr-only" id="live" aria-live="polite"></div>
+    </main>
+</body>
+</html>
